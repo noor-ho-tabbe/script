@@ -1,11 +1,13 @@
 #!/bin/bash
-n=0
-while n<100
+n=1
+while (( $n < 100 ))
 do
-    ./phone_msg
-    sleep 6
-    kill -s 9 `ps -aux | grep phone_msg | grep -v grep awk '{print $2}' `
-    if n%3 == 0
-        sleep 30
+    echo "n=" $n
+    tmp=$(($n % 3))
+    sleep 2
+    # kill -s 9 `ps -aux | grep phone_msg | grep -v grep awk '{print $2}' `
+    if [ $tmp -eq 0 ]; then
+        echo "test"
     fi
+    ((n++))
 done
